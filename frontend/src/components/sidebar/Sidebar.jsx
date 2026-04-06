@@ -1,11 +1,16 @@
 import { NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
 import { toggleSidebar } from '../../store/UiSlice.js';
-
+import { setRole } from '../../store/UiSlice.js';
 
 function Sidebar() {
   const dispatch = useDispatch();
   const isOpen = useSelector((state) => state.ui.isSidebarOpen)
+  const role = useSelector((state) => state.ui.role)
+
+  const toggleRole = () => {
+    dispatch(setRole(role === "admin" ? "viewer" : "admin"))
+  }
   return (
     <>
       {/* 🔲 Overlay (mobile only) */}
@@ -28,7 +33,7 @@ function Sidebar() {
         `}
       >
         <div className="flex flex-col justify-between p-6 w-full">
-          
+
           {/* ❌ Close button (mobile only) */}
           <button
             className="sm:hidden mb-6 text-xl"
@@ -89,7 +94,18 @@ function Sidebar() {
 
           {/* ⚙️ Bottom */}
           <div className="text-sm text-gray-500">
-            Settings
+            <p>Settings</p>
+            <button
+              onClick={toggleRole}
+              className={`px-4 py-2 rounded text-white font-medium transition 
+                ${role === "admin"
+                  ? "bg-green-500 hover:bg-green-600"
+                  : "bg-gray-500 hover:bg-gray-600"
+                }
+              `}
+            >
+              {role === "admin" ? "Admin" : "Viewer"}
+            </button>
           </div>
         </div>
       </div>

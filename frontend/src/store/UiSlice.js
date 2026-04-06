@@ -27,7 +27,6 @@ export const uiSlice = createSlice({
       }
     },
 
-    // ✅ Single source of truth
     toggleSidebar: (state) => {
       state.isSidebarOpen = !state.isSidebarOpen;
     }

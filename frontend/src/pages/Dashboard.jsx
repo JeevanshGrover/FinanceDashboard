@@ -27,7 +27,7 @@ function Dashboard() {
       <div className="bg-white rounded-xl shadow p-4 space-y-3">
         <div>
           <h1>Cash flow Trend</h1>
-          <span className='text-sm text-gray-500'>Last 8 months</span>
+          <span className='text-sm text-gray-500'>Last 6 months</span>
         </div>
           
         <TrendsChart/>
