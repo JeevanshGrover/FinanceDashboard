@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilter, setRole } from "../../store/UiSlice.js"
+import { deleteTransaction } from '../../store/TransactionSlice.js';
 
 function TransactionTable() {
     const transactions = useSelector((state) => state.transactions.transactions);

@@ -7,7 +7,7 @@ const initialState = {
   },
   role: "viewer",
   isSidebarOpen: false,
-  modalOpen: "false"
+  modalOpen: false
 };
 
 export const uiSlice = createSlice({

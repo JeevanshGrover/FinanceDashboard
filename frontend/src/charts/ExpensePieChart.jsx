@@ -36,10 +36,10 @@ function ExpensePieChart() {
   ];
 
   return (
-    <div className="flex flex-col sm:flex-row gap-5 items-center">
+    <div className="flex flex-col sm:flex-row gap-3 items-center">
       
       {/* 🍩 Chart */}
-      <div className="w-full sm:w-1/2 h-64">
+      <div className="w-full sm:w-1/2"style={{ height: 256 }}>
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie
@@ -72,7 +72,7 @@ function ExpensePieChart() {
       </div>
 
       {/* 📊 List */}
-      <div className="w-full sm:w-1/2 space-y-3">
+      <div className="w-full sm:w-1/3 space-y-3">
         {data.map((item, index) => {
           const isActive = index === activeIndex;
 

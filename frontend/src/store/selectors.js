@@ -1,76 +1,78 @@
+import { createSelector } from "@reduxjs/toolkit" // reselect is bundled in RTK
+
 export const selectTransactions = (state) => state.transactions.transactions
 
-export const selectTotalIncome = (state) =>
-  state.transactions.transactions
-    .filter(t => t.type === 'income')
-    .reduce((sum, t) => sum + t.amount, 0)
+export const selectTotalIncome = createSelector(
+  selectTransactions,
+  (transactions) =>
+    transactions
+      .filter(t => t.type === 'income')
+      .reduce((sum, t) => sum + t.amount, 0)
+)
 
-export const selectTotalExpenses = (state) =>
-  state.transactions.transactions
-    .filter(t => t.type === 'expense')
-    .reduce((sum, t) => sum + t.amount, 0)
+export const selectTotalExpenses = createSelector(
+  selectTransactions,
+  (transactions) =>
+    transactions
+      .filter(t => t.type === 'expense')
+      .reduce((sum, t) => sum + t.amount, 0)
+)
 
-export const selectBalance = (state) => {
-  const income = selectTotalIncome(state)
-  const expenses = selectTotalExpenses(state)
-  return income - expenses
-}
+export const selectBalance = createSelector(
+  selectTotalIncome,
+  selectTotalExpenses,
+  (income, expenses) => income - expenses
+)
 
-export const selectTopCategory = (state) => {
-  const expenses = state.transactions.transactions.filter(
-    (t) => t.type === "expense"
-  );
+export const selectTopCategory = createSelector(
+  selectTransactions,
+  (transactions) => {
+    const expenses = transactions.filter(t => t.type === "expense")
+    const map = {}
 
-  const map = {};
+    expenses.forEach(t => {
+      map[t.category] = (map[t.category] || 0) + t.amount
+    })
 
-  expenses.forEach((t) => {
-    map[t.category] = (map[t.category] || 0) + t.amount;
-  });
+    const entries = Object.entries(map)
+    if (!entries.length) return null
 
-  const entries = Object.entries(map);
+    const [category, amount] = entries.reduce((max, curr) =>
+      curr[1] > max[1] ? curr : max
+    )
 
-  if (!entries.length) return null;
+    return { category, amount }
+  }
+)
 
-  const [category, amount] = entries.reduce((max, curr) =>
-    curr[1] > max[1] ? curr : max
-  );
+export const selectSavingsRate = createSelector(
+  selectTotalIncome,
+  selectTotalExpenses,
+  (income, expenses) => {
+    if (income === 0) return 0
+    return ((income - expenses) / income) * 100
+  }
+)
 
-  return { category, amount };
-};
+export const selectExpenseChange = createSelector(
+  selectTransactions,
+  (transactions) => {
+    const monthly = {}
 
-export const selectExpenseChange = (state) => {
-  const transactions = state.transactions.transactions;
+    transactions.forEach(t => {
+      const date = new Date(t.date)
+      const key = `${date.getFullYear()}-${date.getMonth()}`
+      if (!monthly[key]) monthly[key] = 0
+      if (t.type === "expense") monthly[key] += t.amount
+    })
 
-  const monthly = {};
+    const values = Object.values(monthly)
+    if (values.length < 2) return 0
 
-  transactions.forEach((t) => {
-    const date = new Date(t.date);
-    const key = `${date.getFullYear()}-${date.getMonth()}`;
+    const last = values[values.length - 1]
+    const prev = values[values.length - 2]
+    if (prev === 0) return 0
 
-    if (!monthly[key]) monthly[key] = 0;
-
-    if (t.type === "expense") {
-      monthly[key] += t.amount;
-    }
-  });
-
-  const values = Object.values(monthly);
-
-  if (values.length < 2) return 0;
-
-  const last = values[values.length - 1];
-  const prev = values[values.length - 2];
-
-  if (prev === 0) return 0;
-
-  return ((last - prev) / prev) * 100;
-};
-
-export const selectSavingsRate = (state) => {
-  const income = selectTotalIncome(state);
-  const expenses = selectTotalExpenses(state);
-
-  if (income === 0) return 0;
-
-  return ((income - expenses) / income) * 100;
-};
+    return ((last - prev) / prev) * 100
+  }
+)

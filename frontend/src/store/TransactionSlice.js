@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice, nanoid } from "@reduxjs/toolkit"
 import { mockTransactions } from '../data/mockData.js'
 
 const initialState = {

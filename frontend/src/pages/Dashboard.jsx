@@ -29,12 +29,13 @@ function Dashboard() {
           <h1>Cash flow Trend</h1>
           <span className='text-sm text-gray-500'>Last 6 months</span>
         </div>
-          
-        <TrendsChart/>
+        <div className='px-16'>
+          <TrendsChart/>
+        </div>
   
       </div>
 
-      <div className="bg-white rounded-xl shadow p-4">
+      <div className="bg-white rounded-xl shadow px-8 py-4">
         <PieChart/>
       </div>
 
