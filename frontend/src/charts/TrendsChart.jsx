@@ -82,7 +82,7 @@ function TrendsChart() {
           <Line
             type="monotone"
             dataKey="income"
-            stroke="#166534"
+            stroke="#6B8E6B"
             strokeWidth={2}
             dot={{ r: 3 }}
           />
@@ -90,7 +90,7 @@ function TrendsChart() {
           <Line
             type="monotone"
             dataKey="expense"
-            stroke="#c2410c"
+            stroke="#C75B39"
             strokeWidth={2}
             dot={{ r: 3 }}
           />

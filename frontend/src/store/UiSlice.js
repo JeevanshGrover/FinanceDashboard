@@ -1,10 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const getInitialTheme = () => {
+  if (typeof window === "undefined") return "light";
+  return localStorage.getItem("theme") === "dark" ? "dark" : "light";
+};
+
 const initialState = {
   filters: {
     type: "all",
     category: "all"
   },
+  theme: getInitialTheme(),
   role: "viewer",
   isSidebarOpen: false,
   modalOpen: false
@@ -34,9 +40,13 @@ export const uiSlice = createSlice({
 
     toggleModal: (state, action) => {
       state.modalOpen = action.payload
+    },
+
+    toggleTheme: (state) => {
+      state.theme = state.theme === "dark" ? "light" : "dark";
     }
   }
 });
 
-export const { setFilter, setRole, toggleSidebar, toggleModal } = uiSlice.actions;
+export const { setFilter, setRole, toggleSidebar, toggleModal, toggleTheme } = uiSlice.actions;
 export default uiSlice.reducer;

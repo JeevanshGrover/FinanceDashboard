@@ -46,16 +46,16 @@ function AddTransactionCard() {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/35 p-4">
       
-      <div className="bg-white p-6 rounded-xl w-[90%] max-w-md">
+      <div className="w-[90%] max-w-md rounded-2xl border border-[var(--color-muted)] bg-[var(--color-surface)] p-6 text-[var(--color-text)] shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
 
         {/* Header */}
         <div className="flex justify-between items-center mb-4">
-          <h2 className="font-semibold text-lg">New Transaction</h2>
+          <h2 className="text-xl [font-family:var(--font-heading)]">New Transaction</h2>
           <button
             onClick={close}
-            className="text-gray-500 hover:text-black"
+            className="text-[color-mix(in_srgb,var(--color-text)_70%,transparent)] transition duration-200 hover:text-[var(--color-text)]"
           >
             ✕
           </button>
@@ -65,7 +65,7 @@ function AddTransactionCard() {
 
           {/* Error */}
           {error && (
-            <p className="text-red-500 text-sm">{error}</p>
+            <p className="text-sm text-[var(--color-danger)]">{error}</p>
           )}
 
           {/* Description */}
@@ -76,8 +76,10 @@ function AddTransactionCard() {
               setForm({ ...form, note: e.target.value });
               setError("");
             }}
-            className={`border p-2 rounded ${
-              error && !form.note ? "border-red-500" : ""
+            className={`h-10 rounded-xl border bg-[var(--color-surface)] px-3 outline-none transition duration-200 focus:ring-2 ${
+              error && !form.note
+                ? "border-[var(--color-danger)] focus:border-[var(--color-danger)] focus:ring-[color-mix(in_srgb,var(--color-danger)_20%,transparent)]"
+                : "border-[var(--color-muted)] focus:border-[var(--color-primary)] focus:ring-[color-mix(in_srgb,var(--color-primary)_20%,transparent)]"
             }`}
           />
 
@@ -90,8 +92,10 @@ function AddTransactionCard() {
               setForm({ ...form, amount: e.target.value });
               setError("");
             }}
-            className={`border p-2 rounded ${
-              error && !form.amount ? "border-red-500" : ""
+            className={`h-10 rounded-xl border bg-[var(--color-surface)] px-3 outline-none transition duration-200 focus:ring-2 ${
+              error && !form.amount
+                ? "border-[var(--color-danger)] focus:border-[var(--color-danger)] focus:ring-[color-mix(in_srgb,var(--color-danger)_20%,transparent)]"
+                : "border-[var(--color-muted)] focus:border-[var(--color-primary)] focus:ring-[color-mix(in_srgb,var(--color-primary)_20%,transparent)]"
             }`}
           />
 
@@ -102,7 +106,7 @@ function AddTransactionCard() {
             onChange={(e) =>
               setForm({ ...form, date: e.target.value })
             }
-            className="border p-2 rounded"
+            className="h-10 rounded-xl border border-[var(--color-muted)] bg-[var(--color-surface)] px-3 outline-none transition duration-200 focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[color-mix(in_srgb,var(--color-primary)_20%,transparent)]"
           />
 
           {/* Category with suggestions */}
@@ -114,8 +118,10 @@ function AddTransactionCard() {
               setForm({ ...form, category: e.target.value });
               setError("");
             }}
-            className={`border p-2 rounded ${
-              error && !form.category ? "border-red-500" : ""
+            className={`h-10 rounded-xl border bg-[var(--color-surface)] px-3 outline-none transition duration-200 focus:ring-2 ${
+              error && !form.category
+                ? "border-[var(--color-danger)] focus:border-[var(--color-danger)] focus:ring-[color-mix(in_srgb,var(--color-danger)_20%,transparent)]"
+                : "border-[var(--color-muted)] focus:border-[var(--color-primary)] focus:ring-[color-mix(in_srgb,var(--color-primary)_20%,transparent)]"
             }`}
           />
 
@@ -133,10 +139,10 @@ function AddTransactionCard() {
                 onClick={() =>
                   setForm({ ...form, type: t })
                 }
-                className={`flex-1 border p-2 rounded transition ${
+                className={`flex-1 rounded-xl border p-2 transition duration-200 hover:-translate-y-px active:scale-[0.98] ${
                   form.type === t
-                    ? "bg-purple-600 text-white font-semibold"
-                    : "bg-white"
+                    ? "border-[var(--color-primary)] bg-[var(--color-primary)] font-semibold text-white"
+                    : "border-[var(--color-muted)] bg-[var(--color-surface)]"
                 }`}
               >
                 {t}
@@ -147,7 +153,7 @@ function AddTransactionCard() {
           {/* Submit */}
           <button
             onClick={handleSubmit}
-            className="mt-3 bg-purple-600 hover:bg-purple-700 text-white p-2 rounded transition"
+            className="mt-3 rounded-xl bg-[var(--color-primary)] p-2.5 text-white shadow-[0_2px_8px_rgba(0,0,0,0.05)] transition duration-200 hover:-translate-y-px hover:brightness-95 active:scale-[0.98]"
           >
             Add Transaction
           </button>

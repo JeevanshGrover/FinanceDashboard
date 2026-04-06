@@ -24,10 +24,10 @@ function Dashboard() {
         <SummaryCard title="Net Balance" value={balance} type="balance" />
       </div>
 
-      <div className="bg-white rounded-xl shadow p-4 space-y-3">
+      <div className="space-y-3 rounded-2xl border border-[var(--color-muted)] bg-[var(--color-surface)] p-5 shadow-[0_2px_8px_rgba(0,0,0,0.05)] transition duration-200 hover:-translate-y-px">
         <div>
-          <h1>Cash flow Trend</h1>
-          <span className='text-sm text-gray-500'>Last 6 months</span>
+          <h1 className="[font-family:var(--font-heading)] text-xl">Cash flow Trend</h1>
+          <span className='text-sm text-[color-mix(in_srgb,var(--color-text)_70%,transparent)]'>Last 6 months</span>
         </div>
         <div className='px-16'>
           <TrendsChart/>
@@ -35,7 +35,7 @@ function Dashboard() {
   
       </div>
 
-      <div className="bg-white rounded-xl shadow px-8 py-4">
+      <div className="rounded-2xl border border-[var(--color-muted)] bg-[var(--color-surface)] px-8 py-5 shadow-[0_2px_8px_rgba(0,0,0,0.05)] transition duration-200 hover:-translate-y-px">
         <PieChart/>
       </div>
 

@@ -1,30 +1,26 @@
 function SummaryCard({ title, value, type = "default" }) {
   const styles = {
     income: {
-      text: "text-green-600",
-      bar: "bg-green-500"
+      text: "text-[var(--color-success)]"
     },
     expense: {
-      text: "text-red-500",
-      bar: "bg-red-500"
+      text: "text-[var(--color-danger)]"
     },
     balance: {
-      text: "text-gray-800",
-      bar: "bg-gray-800"
+      text: "text-[var(--color-text)]"
     },
     default: {
-      text: "text-gray-800",
-      bar: "bg-gray-400"
+      text: "text-[var(--color-text)]"
     }
   };
 
   const current = styles[type];
 
   return (
-    <div className="bg-white rounded-2xl border shadow-sm p-5 w-full">
+    <div className="w-full rounded-2xl border border-[var(--color-muted)] bg-[var(--color-surface)] p-5 shadow-[0_2px_8px_rgba(0,0,0,0.05)] transition duration-200 hover:-translate-y-px">
       
       {/* Title */}
-      <p className="text-xs text-gray-400 uppercase tracking-wide">
+      <p className="text-xs uppercase tracking-wide text-[color-mix(in_srgb,var(--color-text)_60%,transparent)]">
         {title}
       </p>
 

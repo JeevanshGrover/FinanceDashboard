@@ -27,12 +27,12 @@ function ExpensePieChart() {
     .sort((a, b) => b.value - a.value);
 
   const COLORS = [
-    "#1f3d2b",
-    "#4b7f52",
-    "#c05621",
-    "#7b5e57",
-    "#a3b18a",
-    "#d6ccc2",
+    "#2D4F3E",
+    "#6B8E6B",
+    "#4C7A64",
+    "#C75B39",
+    "#7FAF7F",
+    "#D07A5C",
   ];
 
   return (
@@ -95,7 +95,7 @@ function ExpensePieChart() {
                 />
                 <span
                   className={
-                    isActive ? "text-black" : "text-gray-600"
+                    isActive ? "text-[var(--color-text)]" : "text-[color-mix(in_srgb,var(--color-text)_75%,transparent)]"
                   }
                 >
                   {item.name}

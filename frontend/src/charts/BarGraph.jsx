@@ -45,9 +45,8 @@ function BarGraph() {
           <Tooltip />
           <Legend />
 
-          {/* 🔷 Different Colors */}
-          <Bar dataKey="income" fill="#22c55e" />   {/* green */}
-          <Bar dataKey="expense" fill="#ef4444" />  {/* red */}
+          <Bar dataKey="income" fill="#6B8E6B" />
+          <Bar dataKey="expense" fill="#C75B39" />
 
         </BarChart>
       </ResponsiveContainer>

@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { toggleSidebar, toggleModal } from "../../store/UiSlice.js";
 
-function Header({ title = "Overview" }) {
+function Header() {
   const today = new Date().toLocaleDateString("en-GB", {
     weekday: "long",
     day: "numeric",
@@ -22,31 +22,34 @@ function Header({ title = "Overview" }) {
   const dispatch = useDispatch();
   const role = useSelector((state) => state.ui.role)
   return (
-    <div className="flex justify-between items-center px-6 py-4 bg-white border-b">
+    <div className="sticky top-0 z-30 flex items-center justify-between border-b border-[var(--color-muted)] bg-[color-mix(in_srgb,var(--color-surface)_95%,transparent)] px-6 py-4 backdrop-blur-sm">
 
       {/* Left */}
-      <div className="flex items-center gap-4">
+      <div className="flex min-w-0 items-center gap-4">
 
         <button
           onClick={() => dispatch(toggleSidebar())}
-          className="sm:hidden text-2xl"
+          className="text-2xl transition-transform duration-200 hover:-translate-y-px active:scale-[0.98] md:hidden"
         >
           ☰
         </button>
 
-        <h1 className="text-2xl font-semibold">{getTitle()}</h1>
+        <div>
+          <h1 className="text-2xl [font-family:var(--font-heading)]">{getTitle()}</h1>
+          <p className="text-xs text-[color-mix(in_srgb,var(--color-text)_70%,transparent)]">{today}</p>
+        </div>
       </div>
 
       <div className="flex items-center gap-3">
-        <span className="bg-gray-100 text-blue-600 px-3 py-1 rounded-full text-sm">
+        <span className="rounded-full bg-[var(--color-muted)] px-3 py-1 text-sm capitalize text-[var(--color-text)]">
           {role}
         </span>
 
-        <div className="w-[90px] flex justify-end">
+        <div className="flex w-[100px] justify-end">
           {role === "admin" && (
             <button
               onClick={() => dispatch(toggleModal(true))}
-              className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-md w-full"
+              className="w-full rounded-xl bg-[var(--color-primary)] px-4 py-2 text-white shadow-[0_2px_8px_rgba(0,0,0,0.05)] transition duration-200 hover:-translate-y-px hover:brightness-95 active:scale-[0.98]"
             >
               + Add
             </button>

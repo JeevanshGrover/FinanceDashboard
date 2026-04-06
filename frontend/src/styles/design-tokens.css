@@ -1,0 +1,21 @@
+:root {
+  --color-bg: #F9F7F2;
+  --color-surface: #FFFFFF;
+  --color-primary: #2D4F3E;
+  --color-success: #6B8E6B;
+  --color-danger: #C75B39;
+  --color-text: #363330;
+  --color-muted: #E0DCD4;
+  --font-body: "Inter", sans-serif;
+  --font-heading: "Playfair Display", serif;
+}
+
+.dark {
+  --color-bg: #1E2421;
+  --color-surface: #262C28;
+  --color-primary: #4C7A64;
+  --color-success: #7FAF7F;
+  --color-danger: #D07A5C;
+  --color-text: #E8E6E3;
+  --color-muted: #3A403C;
+}
