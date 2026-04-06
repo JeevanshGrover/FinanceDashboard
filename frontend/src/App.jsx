@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom'
 import './App.css'
 import Header from './components/Header/Header.jsx'
 import Sidebar from './components/sidebar/Sidebar.jsx'
+import AddTransactionCard from './components/transactions/AddTransactionCard.jsx'
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
           <Outlet />
         </div>
       </div>
+      <AddTransactionCard/>
     </div>
   )
 }

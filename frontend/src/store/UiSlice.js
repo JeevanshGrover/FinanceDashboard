@@ -6,7 +6,8 @@ const initialState = {
     category: "all"
   },
   role: "viewer",
-  isSidebarOpen: false
+  isSidebarOpen: false,
+  modalOpen: "false"
 };
 
 export const uiSlice = createSlice({
@@ -29,9 +30,13 @@ export const uiSlice = createSlice({
 
     toggleSidebar: (state) => {
       state.isSidebarOpen = !state.isSidebarOpen;
+    },
+
+    toggleModal: (state, action) => {
+      state.modalOpen = action.payload
     }
   }
 });
 
-export const { setFilter, setRole, toggleSidebar } = uiSlice.actions;
+export const { setFilter, setRole, toggleSidebar, toggleModal } = uiSlice.actions;
 export default uiSlice.reducer;
