@@ -1,8 +1,25 @@
 # FinLens — Finance Dashboard UI
 
-The goal was to design a clean, interactive interface for tracking and understanding financial activity — covering a dashboard overview, transaction management, spending insights, and role-based UI behavior.
+A frontend finance dashboard built as part of a frontend evaluation assignment. The goal was to design a clean, interactive interface for tracking and understanding financial activity — covering a dashboard overview, transaction management, spending insights, and role-based UI behavior.
 
 > **Frontend-only project.** All data is mocked and managed in client-side state. No backend or authentication required.
+
+---
+
+## How It Meets the Requirements
+
+| Requirement | Implementation |
+|-------------|---------------|
+| Dashboard overview with summary cards | Total Balance, Income, Expenses cards on the main dashboard |
+| Time-based visualization | Monthly balance trend line chart |
+| Categorical visualization | Spending breakdown pie/bar chart by category |
+| Transactions list with date, amount, category, type | Full transaction table with all fields |
+| Filtering, sorting, search | Filter by category/type, sort by date or amount, keyword search |
+| Role-based UI (Viewer / Admin) | Role toggle in sidebar; Admin unlocks add/delete actions |
+| Insights section | Top spending category, savings rate, month-over-month comparison |
+| State management | Centralized Redux store for transactions, filters, role, and UI state |
+| Responsiveness | Adaptive layout across mobile, tablet, and desktop |
+| Dark mode | Toggleable theme with localStorage persistence |
 
 ---
 
